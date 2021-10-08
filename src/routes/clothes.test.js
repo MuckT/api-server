@@ -1,13 +1,14 @@
 'use strict'
 
 const supertest = require('supertest')
-const { db, ClothesModel } = require('../models')
+const { db } = require('../models')
+const { Clothes } = require('../models/index')
 const server = require('../server')
 const mockRequest = supertest(server.server)
 
 beforeAll(async () => {
   await db.sync()
-  await ClothesModel.bulkCreate([
+  await Clothes.bulkCreate([
     {
       id: 0,
       name: 'Jeans',
@@ -33,7 +34,6 @@ beforeAll(async () => {
       updatedAt: new Date('2021-10-07'),
     }
   ])
-  return new Promise((resolve) => setTimeout(resolve, 3 * 1000))
 })
 
 afterAll(async () => {

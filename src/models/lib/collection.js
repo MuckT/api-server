@@ -14,7 +14,7 @@ class Collection {
       let createdRecord = await this.model.create(json)
       return createdRecord
     } catch(error) {
-      console.error(`Error creating data for model : ${this.model.name}`)
+      console.error(`Error creating data for model: ${this.model.name}`)
       return error
     }
   }
@@ -27,7 +27,7 @@ class Collection {
       let updatedRecord = await record.update(json)
       return updatedRecord
     } catch(error) {
-      console.error(`Error updating data for model : ${this.model.name}`)
+      console.error(`Error updating data for model: ${this.model.name}`)
       return error
     }
   }
@@ -43,7 +43,7 @@ class Collection {
       return record
 
     } catch(error) {
-      console.error(`Error retrieving data for model : ${this.model.name}`)
+      console.error(`Error retrieving data for model: ${this.model.name}`)
       return error
     }
   }
@@ -55,10 +55,22 @@ class Collection {
       let deletedRecord = await this.model.destroy({ where: { id }})
       return deletedRecord
     } catch (error) {
-      console.error(`Error deleting data for model : ${this.model.name}`)
+      console.error(`Error deleting data for model: ${this.model.name}`)
+      return error
+    }
+  }
+
+  async bulkCreate(objArr) {
+    try {
+      let data = await this.model.bulkCreate(objArr)
+      return data
+    } catch (error) {
+      console.error(`Error bulk creating data for model: ${this.model.name}`)
       return error
     }
   }
 }
+
+
 
 module.exports = Collection
